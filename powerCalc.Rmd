@@ -1,0 +1,16 @@
+---
+title: "power"
+author: "Charles Solomon"
+date: "2024-02-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Text
+
+We estimated study power to detect trait-associated genetic variation in cis and trans across a range of minor allele frequencies and numbers of independent tests (Supplementary Fig. 8). In each case we used powerEQTL75 to calculate power for α = 0.05/number of tests and an effect size and standard deviation of 0.1376. For cis power calculations we assume a variable number of independent tests, defined as the number of independent SNPs in a cis testing window (1–5000) multiplied by the number of genes tested (18,000). For trans power calculations we assume 18 × 109 independent tests, assuming 18,000 genes and 1 × 106 independent SNPs genome-wide. Assuming an effective sample size of 245, our study has 80% power to detect a cis eQTL with a causal eSNP with minor allele frequency > 0.08, assuming 100 independent tests in the cis testing window. In trans, our study has 80% power to detect a trans eQTL with a causal eSNP with minor allele frequency > 0.12.
+
+source https://www.nature.com/articles/s41467-022-31626-4

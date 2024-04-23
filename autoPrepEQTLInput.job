@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#SBATCH --job-name=prepEQTLInput
+#SBATCH --account=vasccell
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=14
+#SBATCH --mem=40G
+#SBATCH --time=03:00:00
+#SBATCH --mail-type=BEGIN,END,FAIL
+#SBATCH --mail-user=cs806@leicester.ac.uk
+#SBATCH --output=%x.out
+#SBATCH --error=%x.err
+#SBATCH --export=NONE
+
+cd $SLURM_SUBMIT_DIR
+
+module load R
+module load plink
+
+bash brbSeq_scripts/autoPrepEQTLInput.sh genoFiles/BRB-seq_Pilot_Study_All_SNPs_No_Filtering tnfa_pilot_BRBseq
+bash brbSeq_scripts/autoPrepEQTLInput.sh genoFiles/BRB-seq_Pilot_Study_All_SNPs_No_Filtering untreated_pilot_BRBseq
+bash brbSeq_scripts/autoPrepEQTLInput.sh genoFiles/huvec50Geno huvec50
+
+
+
