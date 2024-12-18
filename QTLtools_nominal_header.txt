@@ -1,0 +1,18 @@
+1    	phe_id | grp_id	The phenotype ID or if one of the grouping options is provided, then phenotype group ID
+2    	phe_chr	The phenotype chromosome
+3    	phe_from	Start position of the phenotype
+4    	phe_to	End position of the phenotype
+5    	phe_strd	The phenotype strand
+5.1    	phe_id | ve_by_pc1 | n_phe_in_grp	Only printed if --group-best | --group-pca1 | --group-mean. The phenotype ID, variance explained by PC1, or number of phenotypes in the phenotype group for --group-best, --group-pca1, and --group-mean, respectively.
+5.2    	n_phe_in_grp	Only printed if --group-pca1 | --group-mean. The number of phenotypes in the phenotype group.
+6    	n_var_in_cis	The number variants in the cis window for this phenotype.
+7    	dist_phe_var	The distance between the variant and the phenotype start positions.
+8    	var_id	The variant ID.
+9    	var_chr	The variant chromosome.
+10    	var_from	The start position of the variant.
+11    	var_to	The end position of the variant.
+12    	nom_pval	The nominal p-value of the association between the variant and the phenotype.
+13    	r_squared	The r squared of the linear regression.
+14    	slope	The beta (slope) of the linear regression.
+14.1    	slope_se	The standard error of the beta. Only printed if --std-err is provided.
+15    	best_hit	Whether this varint was the best hit for this phenotype.

@@ -1,0 +1,64 @@
+---
+title: "Detection of response QTLs with Full Length BRB-seq"
+author: "Charles Solomon"
+format: pdf
+editor: visual
+bibliography: references.bib
+---
+
+# Introduction
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et cursus tellus, sed luctus justo. Duis ultricies erat vel purus euismod pulvinar. Curabitur cursus odio magna, sit amet fringilla dolor egestas sollicitudin. Integer id purus varius, varius nisl vel, eleifend augue. Vivamus elementum urna id lorem laoreet faucibus. In hac habitasse platea dictumst. Donec sit amet imperdiet lorem, sit amet consequat nunc. Sed enim nisl, dapibus sit amet ipsum id, bibendum lobortis sapien. Nam ut lacus ut sem consequat gravida sed condimentum diam. Suspendisse a orci id elit consequat lobortis nec sit amet magna.
+
+# Materials and methods
+
+## Stratified eQTL mapping for Naive and TNFa treated HUVEC
+
+```{=html}
+<!--
+
+For eQTL mapping, gene expression counts were quantified with featureCounts [@liao2019] from reads mapped with STAR v2.7.11a [@dobin2013]. Genes with total read count \< 25 across the 50 samples in each group were filtered out. Thus 23461 and 22806 genes were tested for Naive and TNFa treated cells, respectively. The expression counts for each treatment were normalized separately with *varianceStabilizingTransformation* function from the R package DESeq2 [@love2014]. Principal component analysis (PCA) was performed on each gene expression data with QTLtools v1.3.1 pca function [@delaneau2017] and 50 principal components (PCs) were included as covariates.
+
+-->
+```
+For eQTL mapping, gene expression counts were quantified with featureCounts [@liao2019] from reads mapped with STAR v2.7.11a [@dobin2013]. Genes with read count \< 10 in more than 5% of the samples were filtered out. This left 11,723 genes as input for eQTL mapping. Sample library sizes were normalized with the "TMM" method from edgeR [@robinson2010]. The samples were then split into Naive and TNFa treated groups and normalized separately by applying inverse normal transformation across the CPM values for each gene. The first forty principal components of the normalized gene expression was obtained with QTLtools [@delaneau2017] and included as covariates in the eQTL model.
+
+For sQTL mapping, -----------------------------
+
+Genetic variants were sourced from our previous study [@solomon2022]. Briefly, PLINK v2.00a4.3 [@chang2015] was used to filter out variants that had missing call rates above 1%, Hardy--Weinberg equilibrium (HWE) test P-value \< 1e^−6^ and minor allele frequency (MAF) \< 25%. The choice of 25% MAF was informed by a previous detailed study to avoid inflated false positives due to our modest sample sizes [@Huang2018]. PCA was performed on the genotype data with PLINK2 and three genotype (PCs ) were included as covariates. The genotype data was converted to VCF format with PLINK2 and indexed with bcftools v1.6 [@li2011] as required by QTLtools [@delaneau2017].
+
+QTL mapping was conducted with QTLtools with --grp-best flag [@delaneau2017]. The option --window was set to 1 Mb, --nominal 1 for nominal pass and --permute 1000 for a permutation pass. eGenes were defined as genes with permutation adjusted empirical value \< 0.05 for the top associated variant (eSNP).
+
+## Naive- and TNFa-specific top eQTLs
+
+Naive- and TNFa-specific top eQTL associations were identified by testing for the significance of the interaction between eSNP genotype and treatment. For every top eGene-eSNP pair, two linear mixed models:
+
+-   Null Model (H0): expression \~ SNP + covariates + treatment + (1\|Donor)
+
+-   Alternative Model (H1): expression \~ SNP + covariates + SNP:treatment + (1\|Donor)
+
+was constructed with R package lme4 [@bates2015]. Where; expression is the combined expression data from Naive and TNFa treated cells, covariates comprise of same covariates used in eQTL mapping, treatment = 0 or 1 (Naive or TNFa, respectively), and (1\|Donor) adjusts for random effects specific to each donor. The models were compared with ANOVA and SNP:treatment with interaction pvalue \<0.05 were considered significant.
+
+## Colocalization analyses
+
+
+# Results
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+# References

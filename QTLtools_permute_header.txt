@@ -1,0 +1,24 @@
+
+1    	phe_id | grp_id	The phenotype ID or if one of the grouping options is provided, then phenotype group ID
+2    	phe_chr	The phenotype chromosome
+3    	phe_from	Start position of the phenotype
+4    	phe_to	End position of the phenotype
+5    	phe_strd	The phenotype strand
+5.1    	phe_id | ve_by_pc1 | n_phe_in_grp	Only printed if --group-best | --group-pca1 | --group-mean. The phenotype ID, variance explained by PC1, or number of phenotypes in the phenotype group for --group-best, --group-pca1, and --group-mean, respectively.
+5.2    	n_phe_in_grp	Only printed if --group-pca1 | --group-mean. The number of phenotypes in the phenotype group.
+6    	n_var_in_cis	The number variants in the cis window for this phenotype.
+7    	dist_phe_var	The distance between the variant and the phenotype start positions.
+8    	var_id	The most significant variant ID.
+9    	var_chr	The most significant variant's chromosome.
+10    	var_from	The start position of the most significant variant.
+11    	var_to	The end position of the most significant variant.
+12    	dof1	The number of degrees of freedom used to compute the p-values.
+13    	dof2	Estimated number of degrees of freedom used in beta approximation p-value calculations.
+14    	bml1	The first shape parameter of the fitted beta distribution (alpha parameter). These should be close to 1.
+15    	bml2	The second shape parameter of the fitted beta distribution (beta parameter). This corresponds to the effective number of independent tests in the region.
+16    	nom_pval	The nominal p-value of the association between the most significant variant and the phenotype.
+17    	r_squared	The r squared of the linear regression.
+18    	slope	The beta (slope) of the linear regression.
+18.1    	slope_se	The standard error of the beta. Only printed if --std-err is provided.
+19    	adj_emp_pval	Adjusted empirical p-value from permutations. This is the adjusted p-value not using the beta approximation. Simply calculated as: (number of p-values observed during permutations that were smaller than or equal to the nominal p-value + 1) / (number of permutations + 1). The most significant p-value achievable would be 1 / (number of permutations + 1).
+20    	adj_beta_pval	Adjusted empirical p-value given by the fitted beta distribution. We strongly recommend using this adjusted p-value in any downstream analysis.

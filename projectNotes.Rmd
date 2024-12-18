@@ -1,0 +1,11 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# You can compare networks based on different criteria:
+#   - Module membership similarity
+#   - Eigengene similarity
+#   - Network topology similarity
+
+
